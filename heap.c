@@ -48,6 +48,47 @@ void heap_push(Heap* pq, void* data, int priority){
 
 
 void heap_pop(Heap* pq){
+  nt size= pq->size;
+  int apt= pq->heapArray[size-1].priority;
+  void *adata= pq->heapArray[size-1].data;
+
+  pq->heapArray[size].priority= pq->heapArray[0].priority;
+  pq->heapArray[size].data= pq->heapArray[0].data;
+  pq->heapArray[0].priority= apt;
+  pq->heapArray[0].data= adata;
+  pq->size= pq->size-1;
+	int i=0;
+  while (i < pq->size){
+    int indexch1= (i*2)+ 1;
+    int indexch2= (i*2)+ 2;
+    int apt2= pq->heapArray[i].priority;
+    void *adata2= pq->heapArray[i].data;
+		
+    if (indexch1 > pq->size) pq->heapArray[indexch1].priority= 0;
+    if (indexch2 > pq->size) pq->heapArray[indexch2].priority= 0;
+    if (pq->heapArray[indexch1].priority > pq->heapArray[indexch2].priority){
+      if (pq->heapArray[indexch1].priority > pq->heapArray[i].priority){
+          pq->heapArray[i].priority= pq->heapArray[indexch1].priority;
+          pq->heapArray[i].data= pq->heapArray[indexch1].data;
+          pq->heapArray[indexch1].priority= apt2;
+          pq->heapArray[indexch1].data= adata2;
+          i= indexch1; 
+      }
+      else break;
+    }
+    else if (pq->heapArray[indexch2].priority > pq->heapArray[indexch1].priority){
+      if (pq->heapArray[indexch2].priority > pq->heapArray[i].priority){
+          pq->heapArray[i].priority= pq->heapArray[indexch2].priority;
+          pq->heapArray[i].data= pq->heapArray[indexch2].data;
+
+          pq->heapArray[indexch2].priority= apt2;
+          pq->heapArray[indexch2].data= adata2;
+          i= indexch2; 
+      } 
+      else break;
+    }
+    else break;
+  }
 
 }
 
