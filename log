@@ -31,3 +31,9 @@ heap.c:51:3: error: unknown type name ‘nt’; did you mean ‘int’?
       |   int
 Compilation failed
 4f3f5c1
+Mon 17 Oct 2022 02:49:30 AM UTC: 
+ heap.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ tests:  8|0
+total_score: 70/70
+7d8cd44
